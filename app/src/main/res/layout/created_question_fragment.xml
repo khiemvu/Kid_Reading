@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/createscreenbackground"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rlTopbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="23dp">
+
+        <ImageView
+            android:id="@+id/ivBack"
+            style="@style/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/button_back" />
+
+        <TextView
+            style="@style/AppTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/create_question" />
+
+        <ImageView
+            android:id="@+id/ivCancel"
+            style="@style/button"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/button_cancel" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rlTopbar"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="70dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/AppTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/create_multiple_choice_question"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etQuestion"
+            android:layout_width="@dimen/width_for_form_create_question"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_question"
+            android:background="@drawable/border_edittext"
+            android:gravity="center"
+            android:hint="@string/type_your_question" />
+
+        <TextView
+            style="@style/AppTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="@string/note_put_the_correct_answer_first"
+            android:textColor="@color/gray_21" />
+
+        <EditText
+            android:id="@+id/etAnswer1"
+            android:layout_width="@dimen/width_for_form_create_question"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_answer"
+            android:background="@drawable/border_edittext"
+            android:hint="@string/correct_answer" />
+
+        <EditText
+            android:id="@+id/etAnswer2"
+            android:layout_width="@dimen/width_for_form_create_question"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_answer"
+            android:background="@drawable/border_edittext"
+            android:hint="@string/choice_2" />
+
+        <EditText
+            android:id="@+id/etAnswer3"
+            android:layout_width="@dimen/width_for_form_create_question"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_answer"
+            android:background="@drawable/border_edittext"
+            android:hint="@string/choice_3" />
+
+        <EditText
+            android:id="@+id/etAnswer4"
+            android:layout_width="@dimen/width_for_form_create_question"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_top_answer"
+            android:background="@drawable/border_edittext"
+            android:hint="@string/choice_4" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/margin_top_question">
+
+        <ImageView
+            android:id="@+id/ivAdd"
+            style="@style/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="80dp"
+            android:src="@drawable/btn_add_question" />
+
+        <ImageView
+            android:id="@+id/ivCancelCreateQuestion"
+            style="@style/button"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="80dp"
+            android:src="@drawable/btn_cancel_questions" />
+    </RelativeLayout>
+
+
+</RelativeLayout>

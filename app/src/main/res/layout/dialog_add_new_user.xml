@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/popup">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="@dimen/spacing_small"
+            android:layout_marginTop="@dimen/spacing_normal"
+            android:src="@drawable/btn_back" />
+
+        <RelativeLayout
+            android:id="@+id/dialog_add_new_user_rlPickPhoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/spacing_huge">
+
+            <ImageView
+                android:id="@+id/dialog_add_new_user_ivPickPhoto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/user_back" />
+
+            <TextView
+                style="@style/Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/dialog_add_new_user_ivPickPhoto"
+                android:layout_centerHorizontal="true"
+                android:text="@string/string_text_pick_your_photo" />
+        </RelativeLayout>
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dialog_add_new_user_rlPickPhoto"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/back_ground_layout_white"
+            android:hint="Write your user name here"
+            android:paddingLeft="@dimen/spacing_large"
+            android:paddingRight="@dimen/spacing_large"
+            android:textSize="@dimen/size_tiny" />
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/startscreenback"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/menu_fragment_llButtonContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/size_mini"
+        android:layout_marginRight="@dimen/size_mini"
+        android:layout_marginTop="203dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/menu_fragment_ivManagerUsers"
+            style="@style/button"
+            android:layout_weight="1"
+            android:src="@drawable/button_user_selector" />
+
+        <ImageView
+            android:id="@+id/menu_fragment_ivCreatedLesson"
+            style="@style/button"
+            android:layout_weight="1"
+            android:src="@drawable/button_create_selector" />
+
+        <ImageView
+            android:id="@+id/menu_fragment_ivSetting"
+            style="@style/button"
+            android:layout_weight="1"
+            android:src="@drawable/button_setting_selector" />
+
+        <ImageView
+            android:id="@+id/menu_fragment_ivProsgress"
+            style="@style/button"
+            android:layout_weight="1"
+            android:src="@drawable/button_progress_selector" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/menu_fragment_ivStart"
+        style="@style/button"
+        android:layout_below="@+id/menu_fragment_llButtonContainer"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/size_tiny"
+        android:src="@drawable/button_start_selector" />
+
+</RelativeLayout>

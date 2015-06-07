@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/popup">
+
+        <ImageView
+            style="@style/button"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/size_mini"
+            android:layout_marginTop="@dimen/size_mini"
+            android:src="@drawable/button_done_selector" />
+
+        <LinearLayout
+            android:id="@+id/dialog_manager_users_llButtonContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/spacing_large"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/dialog_manager_users_rlAddUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/spacing_normal">
+
+                <ImageView
+                    android:id="@+id/dialog_manager_users_btAddUser"
+                    style="@style/button"
+                    android:src="@drawable/button_add_user_selector" />
+
+                <TextView
+                    style="@style/TextBold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/dialog_manager_users_btAddUser"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/string_text_add_new_user"
+                    android:textSize="@dimen/spacing_normal" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/dialog_manager_users_rlEditUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/spacing_normal">
+
+                <ImageView
+                    android:id="@+id/dialog_manager_users_btEditUser"
+                    style="@style/button"
+                    android:src="@drawable/button_edit_user_selector" />/>
+
+                <TextView
+                    style="@style/TextBold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/dialog_manager_users_btEditUser"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/string_text_edit_user"
+                    android:textSize="@dimen/spacing_normal" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/dialog_manager_users_rlDeleteUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/dialog_manager_users_btDeleteUser"
+                    style="@style/button"
+                    android:src="@drawable/button_delete_user_selector" />
+
+                <TextView
+                    style="@style/TextBold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/dialog_manager_users_btDeleteUser"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/string_text_edit_user"
+                    android:textSize="@dimen/spacing_normal" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <GridView
+            android:id="@+id/dialog_manager_users_gridViewUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dialog_manager_users_llButtonContainer"
+            android:numColumns="auto_fit" />
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">My Application</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <!--=====================================================================-->
+    <string name="string_text_add_new_user">Add New User</string>
+    <string name="string_text_edit_user">Edit User</string>
+    <string name="string_text_delete_user">Delete User</string>
+    <string name="string_text_current_user">Current User</string>
+    <string name="string_text_pick_your_photo">Pick your Photo</string>
+    <string name="add_the_story_title_here">Add the story title here</string>
+    <string name="create_story">Create Story</string>
+    <string name="save_the_story_and_add_question">Save the story and add questions</string>
+    <string name="create_question">Create Question</string>
+    <string name="create_multiple_choice_question">CREATE MULTIPLE CHOICE QUESTION</string>
+    <string name="note_put_the_correct_answer_first">Note: Put the correct answer in the first box</string>
+    <string name="type_your_question">Type your question here</string>
+    <string name="correct_answer">Correct Choice</string>
+    <string name="choice_2">Choice 2</string>
+    <string name="choice_3">Choice 3</string>
+    <string name="choice_4">Choice 4</string>
+    <string name="manage_self_story">Manage Self-Created Lessons</string>
+</resources>
