@@ -9,9 +9,11 @@ import com.j256.ormlite.dao.BaseDaoImpl;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
+import com.tkteam.reading.R;
 import com.tkteam.reading.dao.entites.QuestionAnswers;
 import com.tkteam.reading.dao.entites.Story;
 import com.tkteam.reading.dao.entites.User;
+import com.tkteam.reading.utils.FileUtils;
 
 import java.sql.SQLException;
 import java.util.UUID;
@@ -71,9 +73,20 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase, ConnectionSource connectionSource) {
         try {
             TableUtils.createTable(connectionSource, User.class);
-            TableUtils.createTable(connectionSource, Story.class);
-            TableUtils.createTable(connectionSource, QuestionAnswers.class);
-        } catch (SQLException e) {
+//            TableUtils.createTable(connectionSource, Story.class);
+//            TableUtils.createTable(connectionSource, QuestionAnswers.class);
+            String story = FileUtils.readRawFileAsString(context, R.raw.story);
+//            String question = FileUtils.readRawFileAsString(context, R.raw.questions);
+            String[] stories = story.split(";");
+//            String[] questions = question.split(";");
+            for (String query : stories)
+            {
+                sqLiteDatabase.execSQL(query);
+            }
+
+        }
+        catch (Exception e)
+        {
             Log.e(this.getClass().getName(), e.getMessage());
         }
     }
