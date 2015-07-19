@@ -1,8 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/main_screen_back"
     android:orientation="vertical">
 
-</LinearLayout>
+    <LinearLayout
+        android:id="@+id/menu_fragment_llButtonContainer"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="@dimen/size_mini"
+        android:layout_marginRight="@dimen/size_mini"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/ivManagerUsers"
+            style="@style/button"
+            android:layout_width="@dimen/width_height_item_image"
+            android:layout_height="@dimen/width_height_item_image"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:src="@drawable/button_user_selector" />
+
+        <ImageView
+            android:id="@+id/ivCreatedLesson"
+            style="@style/button"
+            android:layout_width="@dimen/width_height_item_image"
+            android:layout_height="@dimen/width_height_item_image"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:src="@drawable/button_create_selector" />
+
+        <ImageView
+            android:id="@+id/ivSetting"
+            style="@style/button"
+            android:layout_width="@dimen/width_height_item_image"
+            android:layout_height="@dimen/width_height_item_image"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:src="@drawable/button_setting_selector" />
+
+        <ImageView
+            android:id="@+id/ivProsgress"
+            style="@style/button"
+            android:layout_width="@dimen/width_height_item_image"
+            android:layout_height="@dimen/width_height_item_image"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:src="@drawable/button_progress_selector" />
+
+        <ImageView
+            android:id="@+id/ivGraphs"
+            style="@style/button"
+            android:layout_width="@dimen/width_height_item_image"
+            android:layout_height="@dimen/width_height_item_image"
+            android:layout_marginRight="15dp"
+            android:layout_weight="1"
+            android:src="@drawable/button_graph_selector" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llLesson"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="105dp">
+
+        <ImageView
+            android:id="@+id/ivSystemLesson"
+            style="@style/button"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:src="@drawable/button_system_lesson_selector" />
+
+        <ImageView
+            android:id="@+id/ivCreateLesson"
+            style="@style/button"
+            android:layout_marginRight="15dp"
+            android:layout_weight="1"
+            android:src="@drawable/button_create_lesson_selector" />
+    </LinearLayout>
+
+    <GridView
+        android:id="@+id/grid_view"
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
+        android:layout_below="@+id/llLesson"
+        android:layout_gravity="left|center_vertical"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="5dp"
+        android:columnWidth="90dp"
+        android:gravity="center"
+        android:horizontalSpacing="10dp"
+        android:numColumns="4"
+        android:padding="5dp"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="10dp" />
+</RelativeLayout>

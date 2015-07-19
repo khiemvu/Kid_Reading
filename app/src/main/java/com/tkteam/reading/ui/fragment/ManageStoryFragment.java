@@ -6,7 +6,7 @@ import android.widget.ListView;
 import com.tkteam.reading.R;
 import com.tkteam.reading.base.BaseFragment;
 import com.tkteam.reading.base.event.ChangedFragmentEvent;
-import com.tkteam.reading.service.StoryService;
+import com.tkteam.reading.service.StoryCreateService;
 import com.tkteam.reading.ui.adapter.CommonAdapter;
 import com.tkteam.reading.ui.group.StoryGroup;
 
@@ -36,12 +36,14 @@ public class ManageStoryFragment extends BaseFragment {
 
         List<StoryGroup> storyList = null;
         try {
-            storyList = StoryGroup.convertFromStory(StoryService.getInstance(getActivity()).findAll());
+            storyList = StoryGroup.convertFromStory(StoryCreateService.getInstance(getActivity()).findAll());
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        CommonAdapter commonAdapter = new CommonAdapter(getActivity(), storyList);
-        lvContent.setAdapter(commonAdapter);
+        if (storyList != null) {
+            CommonAdapter commonAdapter = new CommonAdapter(getActivity(), storyList);
+            lvContent.setAdapter(commonAdapter);
+        }
     }
 
     @OnClick(R.id.manage_story_ivAdd)

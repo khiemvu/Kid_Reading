@@ -7,8 +7,8 @@ import android.widget.Toast;
 
 import com.tkteam.reading.R;
 import com.tkteam.reading.base.BaseFragment;
-import com.tkteam.reading.dao.entites.QuestionAnswers;
-import com.tkteam.reading.service.QuestionAnswerService;
+import com.tkteam.reading.dao.entites.QuestionCreate;
+import com.tkteam.reading.service.QuestionCreateService;
 
 import java.sql.SQLException;
 import java.util.UUID;
@@ -54,15 +54,15 @@ public class CreateQuestionFragment extends BaseFragment {
 
     @OnClick(R.id.ivAdd)
     void onCreateQuestionAndAnswer() {
-        QuestionAnswers questionAnswers = new QuestionAnswers();
-        questionAnswers.setStoryId(storyId);
-        questionAnswers.setQuestion(etQuestion.getText().toString());
-        questionAnswers.setAnswerCorrect(etAnswer1.getText().toString());
-        questionAnswers.setAnswerOne(etAnswer2.getText().toString());
-        questionAnswers.setAnswerTwo(etAnswer3.getText().toString());
-        questionAnswers.setAnswerThree(etAnswer4.getText().toString());
+        QuestionCreate questionCreate = new QuestionCreate();
+        questionCreate.setStoryId(storyId);
+        questionCreate.setQuestion(etQuestion.getText().toString());
+        questionCreate.setAnswerCorrect(etAnswer1.getText().toString());
+        questionCreate.setAnswerOne(etAnswer2.getText().toString());
+        questionCreate.setAnswerTwo(etAnswer3.getText().toString());
+        questionCreate.setAnswerThree(etAnswer4.getText().toString());
         try {
-            QuestionAnswerService.getInstance(getActivity()).createOrUpdate(questionAnswers);
+            QuestionCreateService.getInstance(getActivity()).createOrUpdate(questionCreate);
         } catch (SQLException e) {
             e.printStackTrace();
         }

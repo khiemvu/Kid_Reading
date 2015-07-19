@@ -8,14 +8,16 @@ import java.util.UUID;
 /**
  * Created by Khiemvx on 6/7/2015.
  */
-@DatabaseTable(tableName = QuestionAnswers.TABLE_NAME)
-public class QuestionAnswers extends Base {
-    public static final String TABLE_NAME = "question_answer";
+@DatabaseTable(tableName = QuestionCreate.TABLE_NAME)
+public class QuestionCreate extends Base {
+    public static final String TABLE_NAME = "question_create";
     public static final String QUESTION = "question";
     public static final String ANSWER_CORRECT = "answerCorrect";
     public static final String ANSWER_ONE = "answerOne";
     public static final String ANSWER_TWO = "answerTwo";
     public static final String ANSWER_THREE = "answerThree";
+    public static final String ANSWER_FOUR = "answerFour";
+    public static final String ANSWER_HINT = "answerHint";
     public static final String STORY_ID = "storyId";
 
     @DatabaseField
@@ -28,6 +30,10 @@ public class QuestionAnswers extends Base {
     private String answerTwo;
     @DatabaseField
     private String answerThree;
+    @DatabaseField
+    private String answerFour;
+    @DatabaseField
+    private String answerHint;
     @DatabaseField
     private UUID storyId;
 
@@ -77,5 +83,21 @@ public class QuestionAnswers extends Base {
 
     public void setStoryId(UUID storyId) {
         this.storyId = storyId;
+    }
+
+    public String getAnswerFour() {
+        return answerFour;
+    }
+
+    public void setAnswerFour(String answerFour) {
+        this.answerFour = answerFour;
+    }
+
+    public String getAnswerHint() {
+        return answerHint;
+    }
+
+    public void setAnswerHint(String answerHint) {
+        this.answerHint = answerHint;
     }
 }

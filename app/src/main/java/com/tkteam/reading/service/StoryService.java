@@ -1,6 +1,7 @@
 package com.tkteam.reading.service;
 
 import android.content.Context;
+import android.database.Cursor;
 
 import com.tkteam.reading.dao.StoryDAO;
 import com.tkteam.reading.dao.entites.Story;
@@ -8,10 +9,9 @@ import com.tkteam.reading.dao.entites.Story;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.UUID;
 
 /**
- * Created by Khiemvx on 6/6/2015.
+ * Created by Khiemvx on 6/20/2015.
  */
 public class StoryService {
     public static StoryService instance;
@@ -33,7 +33,7 @@ public class StoryService {
         return StoryDAO.getInstance(context).create(story);
     }
 
-    public Story findById(UUID id) throws SQLException, IOException {
+    public Story findById(String id) throws SQLException, IOException {
         return StoryDAO.getInstance(context).findById(id);
     }
 
@@ -51,5 +51,13 @@ public class StoryService {
 
     public void createOrUpdate(Story story) throws SQLException {
         StoryDAO.getInstance(context).createOrUpdate(story);
+    }
+
+    public Story convertDataToObject(Cursor c, Story story) {
+        story.setId(c.getString(c.getColumnIndex(Story.ID)));
+        story.setTitle(c.getString(c.getColumnIndex(Story.STORY_NAME)));
+        story.setContent(c.getString(c.getColumnIndex(Story.STORY_CONTENT)));
+        story.setThumb_image(c.getString(c.getColumnIndex(Story.IMAGE_URL)));
+        return story;
     }
 }

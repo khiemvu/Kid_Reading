@@ -8,14 +8,13 @@ import com.tkteam.reading.dao.entites.Story;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.UUID;
 
 /**
- * Created by Khiemvx on 6/6/2015.
+ * Created by Khiemvx on 6/20/2015.
  */
 public class StoryDAO {
     private static StoryDAO instance;
-    Dao<Story, UUID> storyDAO;
+    Dao<Story, String> storyDAO;
 
     public StoryDAO(Context context) throws SQLException {
         this.storyDAO = DatabaseHelper.getInstance(context).getStoryDao();
@@ -36,7 +35,7 @@ public class StoryDAO {
         storyDAO.update(story);
     }
 
-    public Story findById(UUID id) throws SQLException, IOException {
+    public Story findById(String id) throws SQLException, IOException {
         return storyDAO.queryForId(id);
     }
 

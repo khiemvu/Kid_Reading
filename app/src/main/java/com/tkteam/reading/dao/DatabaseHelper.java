@@ -10,8 +10,10 @@ import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 import com.tkteam.reading.R;
-import com.tkteam.reading.dao.entites.QuestionAnswers;
+import com.tkteam.reading.dao.entites.Question;
+import com.tkteam.reading.dao.entites.QuestionCreate;
 import com.tkteam.reading.dao.entites.Story;
+import com.tkteam.reading.dao.entites.StoryCreate;
 import com.tkteam.reading.dao.entites.User;
 import com.tkteam.reading.utils.FileUtils;
 
@@ -27,8 +29,10 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     private static DatabaseHelper instance;
     private Context context;
     private Dao<User, UUID> userDao;
-    private Dao<Story, UUID> storyDao;
-    private Dao<QuestionAnswers, UUID> questionAnswerDao;
+    private Dao<StoryCreate, UUID> storyCreateDao;
+    private Dao<Story, String> storyDao;
+    private Dao<QuestionCreate, UUID> questionAnswerDao;
+    private Dao<Question, UUID> questionDao;
 
 
     public DatabaseHelper(Context context) {
@@ -51,7 +55,15 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         return userDao;
     }
 
-    public Dao<Story, UUID> getStoryDao() throws SQLException {
+    public Dao<StoryCreate, UUID> getStoryCreateDao() throws SQLException {
+        if (storyCreateDao == null) {
+            storyCreateDao = getDao(StoryCreate.class);
+            ((BaseDaoImpl) storyCreateDao).initialize();
+        }
+        return storyCreateDao;
+    }
+
+    public Dao<Story, String> getStoryDao() throws SQLException {
         if (storyDao == null) {
             storyDao = getDao(Story.class);
             ((BaseDaoImpl) storyDao).initialize();
@@ -59,12 +71,20 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         return storyDao;
     }
 
-    public Dao<QuestionAnswers, UUID> getQuestionAnswerDao() throws SQLException {
+    public Dao<QuestionCreate, UUID> getQuestionAnswerDao() throws SQLException {
         if (questionAnswerDao == null) {
-            questionAnswerDao = getDao(QuestionAnswers.class);
+            questionAnswerDao = getDao(QuestionCreate.class);
             ((BaseDaoImpl) questionAnswerDao).initialize();
         }
         return questionAnswerDao;
+    }
+
+    public Dao<Question, UUID> getQuestionDao() throws SQLException {
+        if (questionDao == null) {
+            questionDao = getDao(Question.class);
+            ((BaseDaoImpl) questionDao).initialize();
+        }
+        return questionDao;
     }
 
 // -------------------------- OTHER METHODS --------------------------
@@ -73,20 +93,15 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase, ConnectionSource connectionSource) {
         try {
             TableUtils.createTable(connectionSource, User.class);
-//            TableUtils.createTable(connectionSource, Story.class);
-//            TableUtils.createTable(connectionSource, QuestionAnswers.class);
+            TableUtils.createTable(connectionSource, StoryCreate.class);
+            TableUtils.createTable(connectionSource, QuestionCreate.class);
             String story = FileUtils.readRawFileAsString(context, R.raw.story);
-//            String question = FileUtils.readRawFileAsString(context, R.raw.questions);
             String[] stories = story.split(";");
-//            String[] questions = question.split(";");
-            for (String query : stories)
-            {
+            for (String query : stories) {
                 sqLiteDatabase.execSQL(query);
             }
 
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             Log.e(this.getClass().getName(), e.getMessage());
         }
     }
@@ -96,11 +111,11 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
                           int newVersion) {
         try {
             TableUtils.dropTable(connectionSource, User.class, true);
-            TableUtils.dropTable(connectionSource, Story.class, true);
-            TableUtils.dropTable(connectionSource, QuestionAnswers.class, true);
+            TableUtils.dropTable(connectionSource, StoryCreate.class, true);
+            TableUtils.dropTable(connectionSource, QuestionCreate.class, true);
             TableUtils.createTable(connectionSource, User.class);
-            TableUtils.createTable(connectionSource, QuestionAnswers.class);
-            TableUtils.createTable(connectionSource, Story.class);
+            TableUtils.createTable(connectionSource, QuestionCreate.class);
+            TableUtils.createTable(connectionSource, StoryCreate.class);
 
         } catch (SQLException e) {
         }
@@ -108,14 +123,14 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
     public void dropAllDatabase() throws SQLException {
         TableUtils.dropTable(connectionSource, User.class, true);
-        TableUtils.dropTable(connectionSource, Story.class, true);
-        TableUtils.dropTable(connectionSource, QuestionAnswers.class, true);
+        TableUtils.dropTable(connectionSource, StoryCreate.class, true);
+        TableUtils.dropTable(connectionSource, QuestionCreate.class, true);
 
     }
 
     public void createTables() throws SQLException {
         TableUtils.createTable(connectionSource, User.class);
-        TableUtils.createTable(connectionSource, Story.class);
-        TableUtils.createTable(connectionSource, QuestionAnswers.class);
+        TableUtils.createTable(connectionSource, StoryCreate.class);
+        TableUtils.createTable(connectionSource, QuestionCreate.class);
     }
 }

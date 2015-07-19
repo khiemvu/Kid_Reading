@@ -1,0 +1,55 @@
+package com.tkteam.reading.service;
+
+import android.content.Context;
+
+import com.tkteam.reading.dao.StoryCreateDAO;
+import com.tkteam.reading.dao.entites.StoryCreate;
+
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.UUID;
+
+/**
+ * Created by Khiemvx on 6/6/2015.
+ */
+public class StoryCreateService {
+    public static StoryCreateService instance;
+    private Context context;
+
+    public StoryCreateService(Context context) {
+        this.context = context;
+
+    }
+
+    public static StoryCreateService getInstance(Context context) {
+        if (instance == null) {
+            instance = new StoryCreateService(context);
+        }
+        return instance;
+    }
+
+    public StoryCreate create(StoryCreate storyCreate) throws SQLException {
+        return StoryCreateDAO.getInstance(context).create(storyCreate);
+    }
+
+    public StoryCreate findById(UUID id) throws SQLException, IOException {
+        return StoryCreateDAO.getInstance(context).findById(id);
+    }
+
+    public List<StoryCreate> findAll() throws SQLException {
+        return StoryCreateDAO.getInstance(context).findAll();
+    }
+
+    public void update(StoryCreate profileEntity) throws SQLException {
+        StoryCreateDAO.getInstance(context).update(profileEntity);
+    }
+
+    public void delete(StoryCreate storyCreate) throws SQLException {
+        StoryCreateDAO.getInstance(context).delete(storyCreate);
+    }
+
+    public void createOrUpdate(StoryCreate storyCreate) throws SQLException {
+        StoryCreateDAO.getInstance(context).createOrUpdate(storyCreate);
+    }
+}

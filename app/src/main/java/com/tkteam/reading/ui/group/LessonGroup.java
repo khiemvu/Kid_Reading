@@ -1,7 +1,6 @@
 package com.tkteam.reading.ui.group;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -13,23 +12,27 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.tkteam.reading.ApplicationStateHolder;
 import com.tkteam.reading.R;
-import com.tkteam.reading.dao.entites.StoryCreate;
+import com.tkteam.reading.base.event.ChangedFragmentEvent;
+import com.tkteam.reading.dao.entites.Story;
+import com.tkteam.reading.ui.fragment.ReadStoryFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Khiemvx on 6/6/2015.
- */
-public class StoryGroup extends Group {
+import de.greenrobot.event.EventBus;
 
+/**
+ * Created by Khiemvx on 6/20/2015.
+ */
+public class LessonGroup extends Group {
     DisplayImageOptions options;
     ImageLoader imageLoader;
     private String storyName;
-    private String description;
-    private String storyUrl;
+    private String storyImage;
+    private String storyId;
+    private String storyContent;
 
-    public StoryGroup() {
+    public LessonGroup() {
         options = new DisplayImageOptions.Builder()
                 .cacheInMemory(true)
                 .cacheOnDisc(true)
@@ -46,46 +49,55 @@ public class StoryGroup extends Group {
                 .defaultDisplayImageOptions(DisplayImageOptions.createSimple()).build();
         imageLoader = ImageLoader.getInstance();
         imageLoader.init(config);
+
     }
 
-    public static List<StoryGroup> convertFromStory(List<StoryCreate> storyCreateList) {
-        List<StoryGroup> storyGroups = new ArrayList<>();
-        for (StoryCreate storyCreate : storyCreateList) {
-            StoryGroup userGroup = new StoryGroup();
-            userGroup.setStoryName(storyCreate.getTitle());
-            userGroup.setDescription(storyCreate.getContent());
-            userGroup.setStoryUrl(storyCreate.getThumb_image());
-            storyGroups.add(userGroup);
+    public static List<LessonGroup> convertFromStory(List<Story> storyList) {
+        List<LessonGroup> storyGroups = new ArrayList<>();
+        for (Story story : storyList) {
+            LessonGroup lessonGroup = new LessonGroup();
+            lessonGroup.setStoryName(story.getTitle());
+            lessonGroup.setStoryImage("assets://images/" + story.getThumb_image());
+            lessonGroup.setStoryId(story.getId());
+            lessonGroup.setStoryContent(story.getContent());
+            storyGroups.add(lessonGroup);
         }
         return storyGroups;
     }
 
     @Override
     public int getLayout() {
-        return R.layout.list_view_story_item;
+        return R.layout.start_fragment_grid_veiw_item;
     }
 
     @Override
     public void findById(ViewHolder viewHolder, View view) {
-        ImageView ivStory = (ImageView) view.findViewById(R.id.ivStory);
-        TextView tvStoryName = (TextView) view.findViewById(R.id.tvStoryName);
-        TextView tvDescription = (TextView) view.findViewById(R.id.tvDescription);
+        ImageView ivStory = (ImageView) view.findViewById(R.id.ivItem);
+        TextView tvStoryName = (TextView) view.findViewById(R.id.tvItem);
         viewHolder.addView(ivStory);
         viewHolder.addView(tvStoryName);
-        viewHolder.addView(tvDescription);
     }
 
     @Override
     public void setDataToView(ViewHolder viewHolder, View view) {
-        ImageView ivStory = (ImageView) viewHolder.getView(R.id.ivStory);
-        TextView tvStoryName = (TextView) viewHolder.getView(R.id.tvStoryName);
-        TextView tvDescription = (TextView) viewHolder.getView(R.id.tvDescription);
-
+        ImageView ivStory = (ImageView) viewHolder.getView(R.id.ivItem);
+        TextView tvStoryName = (TextView) viewHolder.getView(R.id.tvItem);
         tvStoryName.setText(storyName);
-        tvDescription.setText(description);
-        Bitmap bitmap = BitmapFactory.decodeFile(storyUrl);
-        ivStory.setImageBitmap(bitmap);
-//        ImageLoader.getInstance().displayImage(storyUrl, ivStory);
+        ImageLoader.getInstance().displayImage(storyImage, ivStory, options);
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EventBus.getDefault().post(new ChangedFragmentEvent(new ReadStoryFragment(storyId, storyName, storyContent, storyImage)));
+            }
+        });
+    }
+
+    public String getStoryImage() {
+        return storyImage;
+    }
+
+    public void setStoryImage(String storyImage) {
+        this.storyImage = storyImage;
     }
 
     public String getStoryName() {
@@ -96,19 +108,19 @@ public class StoryGroup extends Group {
         this.storyName = storyName;
     }
 
-    public String getDescription() {
-        return description;
+    public String getStoryId() {
+        return storyId;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setStoryId(String storyId) {
+        this.storyId = storyId;
     }
 
-    public String getStoryUrl() {
-        return storyUrl;
+    public String getStoryContent() {
+        return storyContent;
     }
 
-    public void setStoryUrl(String storyUrl) {
-        this.storyUrl = storyUrl;
+    public void setStoryContent(String storyContent) {
+        this.storyContent = storyContent;
     }
 }

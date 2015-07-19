@@ -4,18 +4,15 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 /**
- * Created by Khiemvx on 6/20/2015.
+ * Created by Khiemvx on 6/6/2015.
  */
 @DatabaseTable(tableName = StoryCreate.TABLE_NAME)
-public class Story {
-    public static final String TABLE_NAME = "story";
+public class StoryCreate extends Base {
+    public static final String TABLE_NAME = "story_create";
     public static final String STORY_NAME = "title";
     public static final String STORY_CONTENT = "content";
     public static final String IMAGE_URL = "thumb_image";
-    public static final String ID = "id";
 
-    @DatabaseField
-    private String id;
     @DatabaseField
     private String title;
     @DatabaseField
@@ -46,15 +43,4 @@ public class Story {
     public void setThumb_image(String thumb_image) {
         this.thumb_image = thumb_image;
     }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-
 }
-
