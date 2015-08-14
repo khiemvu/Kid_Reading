@@ -23,7 +23,7 @@ import de.greenrobot.event.EventBus;
 /**
  * Created by Trung on 5/14/2015.
  */
-public class MenuFragment extends BaseFragment {
+public class MainFragment extends BaseFragment {
     @InjectView(R.id.menu_fragment_ivManagerUsers)
     ImageView ivManagerUsers;
 

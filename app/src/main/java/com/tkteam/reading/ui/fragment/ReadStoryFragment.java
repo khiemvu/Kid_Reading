@@ -16,7 +16,9 @@ import com.tkteam.reading.R;
 import com.tkteam.reading.base.BaseFragment;
 import com.tkteam.reading.dao.DatabaseHelper;
 import com.tkteam.reading.dao.entites.Question;
+import com.tkteam.reading.dao.entites.Story;
 import com.tkteam.reading.service.QuestionSerVice;
+import com.tkteam.reading.service.StoryService;
 import com.tkteam.reading.ui.adapter.ReadStoryAdapter;
 import com.viewpagerindicator.CirclePageIndicator;
 
@@ -30,6 +32,7 @@ import butterknife.OnClick;
  * Created by Khiemvx on 6/21/2015.
  */
 public class ReadStoryFragment extends BaseFragment {
+    static int numberAnswered;
     @InjectView(R.id.ivBack)
     ImageView ivBack;
     @InjectView(R.id.tvTitleStory)
@@ -42,6 +45,8 @@ public class ReadStoryFragment extends BaseFragment {
     ViewPager viewPager;
     @InjectView(R.id.indicator)
     CirclePageIndicator mIndicator;
+    @InjectView(R.id.btSubmit)
+    ImageView btSubmit;
     DisplayImageOptions options;
     ImageLoader imageLoader;
     List<Question> questions;
@@ -64,6 +69,7 @@ public class ReadStoryFragment extends BaseFragment {
 
     @Override
     public void setupView() {
+        numberAnswered = 0;
         tvTitleStory.setText(storyName);
         tvStoryContent.setText(storyContent);
         tvTitleStory.setText(storyName);
@@ -107,6 +113,23 @@ public class ReadStoryFragment extends BaseFragment {
         imageLoader.init(config);
 
         ImageLoader.getInstance().displayImage(storyImage, ivStory, options);
+    }
+
+    @OnClick(R.id.btSubmit)
+    public void onSubmit() {
+        List<Story> storyList = new ArrayList<>();
+        Cursor c = DatabaseHelper.getInstance(getActivity()).getReadableDatabase().rawQuery("SELECT * FROM  story WHERE id = ?", new String[]{storyId});
+        if (c.getCount() > 0) {
+            c.moveToFirst();
+            do {
+                storyList.add(StoryService.getInstance(getActivity()).convertDataToObject(c, new Story()));
+            } while (c.moveToNext());
+            c.close();
+        }
+        Story story = storyList.get(0);
+        story.setNumberQuestionAnswered(String.valueOf(numberAnswered + 1));
+        DatabaseHelper.getInstance(getActivity()).getReadableDatabase().rawQuery("UPDATE story SET number_question_answered = " + String.valueOf(numberAnswered + 1) + "WHERE id = ?" + storyId);
+        getActivity().onBackPressed();
     }
 
     @OnClick(R.id.ivBack)

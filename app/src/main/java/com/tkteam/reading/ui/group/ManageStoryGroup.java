@@ -14,22 +14,27 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.tkteam.reading.ApplicationStateHolder;
 import com.tkteam.reading.R;
 import com.tkteam.reading.dao.entites.StoryCreate;
+import com.tkteam.reading.ui.event.DeleteStoryEvent;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+
+import de.greenrobot.event.EventBus;
 
 /**
  * Created by Khiemvx on 6/6/2015.
  */
-public class StoryGroup extends Group {
+public class ManageStoryGroup extends Group {
 
     DisplayImageOptions options;
     ImageLoader imageLoader;
     private String storyName;
     private String description;
     private String storyUrl;
+    private UUID storyId;
 
-    public StoryGroup() {
+    public ManageStoryGroup() {
         options = new DisplayImageOptions.Builder()
                 .cacheInMemory(true)
                 .cacheOnDisc(true)
@@ -48,13 +53,14 @@ public class StoryGroup extends Group {
         imageLoader.init(config);
     }
 
-    public static List<StoryGroup> convertFromStory(List<StoryCreate> storyCreateList) {
-        List<StoryGroup> storyGroups = new ArrayList<>();
+    public static List<ManageStoryGroup> convertFromStory(List<StoryCreate> storyCreateList) {
+        List<ManageStoryGroup> storyGroups = new ArrayList<>();
         for (StoryCreate storyCreate : storyCreateList) {
-            StoryGroup userGroup = new StoryGroup();
+            ManageStoryGroup userGroup = new ManageStoryGroup();
             userGroup.setStoryName(storyCreate.getTitle());
             userGroup.setDescription(storyCreate.getContent());
             userGroup.setStoryUrl(storyCreate.getThumb_image());
+            userGroup.setStoryId(storyCreate.getId());
             storyGroups.add(userGroup);
         }
         return storyGroups;
@@ -62,29 +68,39 @@ public class StoryGroup extends Group {
 
     @Override
     public int getLayout() {
-        return R.layout.list_view_story_item;
+        return R.layout.list_view_manager_story_item;
     }
 
     @Override
     public void findById(ViewHolder viewHolder, View view) {
         ImageView ivStory = (ImageView) view.findViewById(R.id.ivStory);
+        ImageView ivDelete = (ImageView) view.findViewById(R.id.ivDelete);
         TextView tvStoryName = (TextView) view.findViewById(R.id.tvStoryName);
         TextView tvDescription = (TextView) view.findViewById(R.id.tvDescription);
         viewHolder.addView(ivStory);
         viewHolder.addView(tvStoryName);
         viewHolder.addView(tvDescription);
+        viewHolder.addView(ivDelete);
     }
 
     @Override
-    public void setDataToView(ViewHolder viewHolder, View view) {
+    public void setDataToView(ViewHolder viewHolder, View view, boolean isShowDeleteButton) {
         ImageView ivStory = (ImageView) viewHolder.getView(R.id.ivStory);
+        ImageView ivDelete = (ImageView) viewHolder.getView(R.id.ivDelete);
         TextView tvStoryName = (TextView) viewHolder.getView(R.id.tvStoryName);
         TextView tvDescription = (TextView) viewHolder.getView(R.id.tvDescription);
 
+        ivDelete.setVisibility(isShowDeleteButton ? View.VISIBLE : View.GONE);
         tvStoryName.setText(storyName);
         tvDescription.setText(description);
         Bitmap bitmap = BitmapFactory.decodeFile(storyUrl);
         ivStory.setImageBitmap(bitmap);
+        ivDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EventBus.getDefault().post(new DeleteStoryEvent(storyId));
+            }
+        });
 //        ImageLoader.getInstance().displayImage(storyUrl, ivStory);
     }
 
@@ -110,5 +126,13 @@ public class StoryGroup extends Group {
 
     public void setStoryUrl(String storyUrl) {
         this.storyUrl = storyUrl;
+    }
+
+    public UUID getStoryId() {
+        return storyId;
+    }
+
+    public void setStoryId(UUID storyId) {
+        this.storyId = storyId;
     }
 }

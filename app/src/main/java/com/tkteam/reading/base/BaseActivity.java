@@ -1,18 +1,12 @@
 package com.tkteam.reading.base;
 
-import android.app.Activity;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import com.tkteam.reading.R;
 import com.tkteam.reading.base.event.ChangedFragmentEvent;
-import com.tkteam.reading.service.UserService;
-import com.tkteam.reading.ui.fragment.MenuFragment;
+import com.tkteam.reading.ui.fragment.MainFragment;
 
 import de.greenrobot.event.EventBus;
 
@@ -26,7 +20,7 @@ public class BaseActivity<T> extends FragmentActivity {
         if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this);
         }
-        MenuFragment menuFragment = new MenuFragment();
+        MainFragment menuFragment = new MainFragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
 
         fragmentTransaction.replace(R.id.container, menuFragment);

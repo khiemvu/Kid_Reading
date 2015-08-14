@@ -12,27 +12,24 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.tkteam.reading.ApplicationStateHolder;
 import com.tkteam.reading.R;
-import com.tkteam.reading.base.event.ChangedFragmentEvent;
 import com.tkteam.reading.dao.entites.Story;
-import com.tkteam.reading.ui.fragment.ReadStoryFragment;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import de.greenrobot.event.EventBus;
+import java.util.UUID;
 
 /**
- * Created by Khiemvx on 6/20/2015.
+ * Created by Khiemvx on 8/14/2015.
  */
-public class LessonGroup extends Group {
+public class ProgressGroup extends Group {
     DisplayImageOptions options;
     ImageLoader imageLoader;
     private String storyName;
-    private String storyImage;
-    private String storyId;
-    private String storyContent;
+    private String description;
+    private String storyUrl;
+    private UUID storyId;
 
-    public LessonGroup() {
+    public ProgressGroup() {
         options = new DisplayImageOptions.Builder()
                 .cacheInMemory(true)
                 .cacheOnDisc(true)
@@ -49,55 +46,54 @@ public class LessonGroup extends Group {
                 .defaultDisplayImageOptions(DisplayImageOptions.createSimple()).build();
         imageLoader = ImageLoader.getInstance();
         imageLoader.init(config);
-
     }
 
-    public static List<LessonGroup> convertFromStory(List<Story> storyList) {
-        List<LessonGroup> storyGroups = new ArrayList<>();
-        for (Story story : storyList) {
-            LessonGroup lessonGroup = new LessonGroup();
-            lessonGroup.setStoryName(story.getTitle());
-            lessonGroup.setStoryImage("assets://images/" + story.getThumb_image());
-            lessonGroup.setStoryId(story.getId());
-            lessonGroup.setStoryContent(story.getContent());
-            storyGroups.add(lessonGroup);
+    public static List<ProgressGroup> convertFromStory(List<Story> storySystem) {
+        List<ProgressGroup> storyGroups = new ArrayList<>();
+        for (Story story : storySystem) {
+            ProgressGroup userGroup = new ProgressGroup();
+            userGroup.setStoryName(story.getTitle());
+            userGroup.setDescription(story.getContent());
+            userGroup.setStoryUrl("assets://images/" + story.getThumb_image());
+//            userGroup.setStoryId(UUID.fromString(story.getId()));
+            storyGroups.add(userGroup);
         }
         return storyGroups;
     }
 
     @Override
     public int getLayout() {
-        return R.layout.start_fragment_grid_veiw_item;
+        return R.layout.list_view_progress_item;
     }
 
     @Override
     public void findById(ViewHolder viewHolder, View view) {
-        ImageView ivStory = (ImageView) view.findViewById(R.id.ivItem);
-        TextView tvStoryName = (TextView) view.findViewById(R.id.tvItem);
+        ImageView ivStory = (ImageView) view.findViewById(R.id.ivStory);
+        ImageView ivReset = (ImageView) view.findViewById(R.id.ivReset);
+        TextView tvStoryName = (TextView) view.findViewById(R.id.tvStoryName);
+        TextView tvDescription = (TextView) view.findViewById(R.id.tvDescription);
         viewHolder.addView(ivStory);
         viewHolder.addView(tvStoryName);
+        viewHolder.addView(tvDescription);
+        viewHolder.addView(ivReset);
     }
 
     @Override
     public void setDataToView(ViewHolder viewHolder, View view, boolean isShowDeleteButton) {
-        ImageView ivStory = (ImageView) viewHolder.getView(R.id.ivItem);
-        TextView tvStoryName = (TextView) viewHolder.getView(R.id.tvItem);
+        ImageView ivStory = (ImageView) viewHolder.getView(R.id.ivStory);
+        ImageView ivReset = (ImageView) viewHolder.getView(R.id.ivReset);
+        TextView tvStoryName = (TextView) viewHolder.getView(R.id.tvStoryName);
+        TextView tvDescription = (TextView) viewHolder.getView(R.id.tvDescription);
+
         tvStoryName.setText(storyName);
-        ImageLoader.getInstance().displayImage(storyImage, ivStory, options);
-        view.setOnClickListener(new View.OnClickListener() {
+//        tvDescription.setText(description);
+        ImageLoader.getInstance().displayImage(storyUrl, ivStory, options);
+        ivReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EventBus.getDefault().post(new ChangedFragmentEvent(new ReadStoryFragment(storyId, storyName, storyContent, storyImage)));
+                //todo reset and update database
             }
         });
-    }
-
-    public String getStoryImage() {
-        return storyImage;
-    }
-
-    public void setStoryImage(String storyImage) {
-        this.storyImage = storyImage;
     }
 
     public String getStoryName() {
@@ -108,19 +104,27 @@ public class LessonGroup extends Group {
         this.storyName = storyName;
     }
 
-    public String getStoryId() {
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getStoryUrl() {
+        return storyUrl;
+    }
+
+    public void setStoryUrl(String storyUrl) {
+        this.storyUrl = storyUrl;
+    }
+
+    public UUID getStoryId() {
         return storyId;
     }
 
-    public void setStoryId(String storyId) {
+    public void setStoryId(UUID storyId) {
         this.storyId = storyId;
-    }
-
-    public String getStoryContent() {
-        return storyContent;
-    }
-
-    public void setStoryContent(String storyContent) {
-        this.storyContent = storyContent;
     }
 }

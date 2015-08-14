@@ -8,7 +8,7 @@ import com.tkteam.reading.base.BaseFragment;
 import com.tkteam.reading.base.event.ChangedFragmentEvent;
 import com.tkteam.reading.service.StoryCreateService;
 import com.tkteam.reading.ui.adapter.CommonAdapter;
-import com.tkteam.reading.ui.group.StoryGroup;
+import com.tkteam.reading.ui.group.ManageStoryGroup;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -18,13 +18,17 @@ import butterknife.OnClick;
 import de.greenrobot.event.EventBus;
 
 /**
- * Created by Trung on 5/26/2015.
+ * Created by khiemvx on 5/26/2015.
  */
 public class ManageStoryFragment extends BaseFragment {
     @InjectView(R.id.lvContent)
     ListView lvContent;
     @InjectView(R.id.ivBack)
     ImageView ivBack;
+
+    CommonAdapter commonAdapter;
+    boolean showDeleteButton = false;
+
 
     @Override
     public int getLayout() {
@@ -34,14 +38,14 @@ public class ManageStoryFragment extends BaseFragment {
     @Override
     public void setupView() {
 
-        List<StoryGroup> storyList = null;
+        List<ManageStoryGroup> storyList = null;
         try {
-            storyList = StoryGroup.convertFromStory(StoryCreateService.getInstance(getActivity()).findAll());
+            storyList = ManageStoryGroup.convertFromStory(StoryCreateService.getInstance(getActivity()).findAll());
         } catch (SQLException e) {
             e.printStackTrace();
         }
         if (storyList != null) {
-            CommonAdapter commonAdapter = new CommonAdapter(getActivity(), storyList);
+            commonAdapter = new CommonAdapter(getActivity(), storyList);
             lvContent.setAdapter(commonAdapter);
         }
     }
@@ -49,6 +53,13 @@ public class ManageStoryFragment extends BaseFragment {
     @OnClick(R.id.manage_story_ivAdd)
     public void clickStart() {
         EventBus.getDefault().post(new ChangedFragmentEvent(new CreateStoryFragment()));
+    }
+
+    @OnClick(R.id.manage_story_ivDelete)
+    public void onDelete() {
+        commonAdapter.setShowDeleteButton(!showDeleteButton);
+        commonAdapter.notifyDataSetChanged();
+        showDeleteButton = !showDeleteButton;
     }
 
     @OnClick(R.id.ivBack)

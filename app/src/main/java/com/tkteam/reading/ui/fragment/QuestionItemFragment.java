@@ -8,8 +8,11 @@ import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.tkteam.reading.ApplicationStateHolder;
 import com.tkteam.reading.R;
 import com.tkteam.reading.dao.entites.Question;
 import com.tkteam.reading.utils.StringUtils;
@@ -82,7 +85,13 @@ public class QuestionItemFragment extends Fragment {
                 }
             }
         });
-
+        RadioGroup radioGroup = (RadioGroup) v.findViewById(R.id.radioGroup);
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                ReadStoryFragment.numberAnswered = currentPosition;
+            }
+        });
         return v;
     }
 

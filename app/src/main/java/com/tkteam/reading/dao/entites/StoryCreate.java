@@ -12,6 +12,7 @@ public class StoryCreate extends Base {
     public static final String STORY_NAME = "title";
     public static final String STORY_CONTENT = "content";
     public static final String IMAGE_URL = "thumb_image";
+    public static final String NUMBER_QUESTION_ANSWERED = "number_question_answered";
 
     @DatabaseField
     private String title;
@@ -19,6 +20,8 @@ public class StoryCreate extends Base {
     private String content;
     @DatabaseField
     private String thumb_image;
+    @DatabaseField
+    private String numberQuestionAnswered;
 
     public String getTitle() {
         return title;
@@ -42,5 +45,13 @@ public class StoryCreate extends Base {
 
     public void setThumb_image(String thumb_image) {
         this.thumb_image = thumb_image;
+    }
+
+    public String getNumberQuestionAnswered() {
+        return numberQuestionAnswered;
+    }
+
+    public void setNumberQuestionAnswered(String numberQuestionAnswered) {
+        this.numberQuestionAnswered = numberQuestionAnswered;
     }
 }

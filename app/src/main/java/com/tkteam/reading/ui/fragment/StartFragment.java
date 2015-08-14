@@ -2,6 +2,7 @@ package com.tkteam.reading.ui.fragment;
 
 import android.database.Cursor;
 import android.widget.GridView;
+import android.widget.ImageView;
 
 import com.tkteam.reading.R;
 import com.tkteam.reading.base.BaseFragment;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.InjectView;
+import butterknife.OnClick;
 
 /**
  * Created by Trung on 5/26/2015.
@@ -23,6 +25,10 @@ public class StartFragment extends BaseFragment {
 
     @InjectView(R.id.grid_view)
     GridView lvContent;
+    @InjectView(R.id.ivCreateLesson)
+    ImageView ivCreateLesson;
+    @InjectView(R.id.ivSystemLesson)
+    ImageView ivSystemLesson;
 
     @Override
     public int getLayout() {
@@ -34,6 +40,11 @@ public class StartFragment extends BaseFragment {
         List<LessonGroup> lessonGroupList = LessonGroup.convertFromStory(getDataFromDataBase());
         CommonAdapter commonAdapter = new CommonAdapter(getActivity(), lessonGroupList);
         lvContent.setAdapter(commonAdapter);
+    }
+
+    @OnClick(R.id.ivCreatedLesson)
+    public void onShowListCreateLesson() {
+        ivSystemLesson.setEnabled(false);
     }
 
     private List<Story> getDataFromDataBase() {

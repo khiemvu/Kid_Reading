@@ -5,4 +5,56 @@
     android:background="@drawable/createscreenbackground"
     android:orientation="vertical">
 
+    <RelativeLayout
+        android:id="@+id/rlTopbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="23dp">
+
+        <ImageView
+            android:id="@+id/ivBack"
+            style="@style/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/button_back" />
+
+        <TextView
+            style="@style/AppTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/report" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/ivSystemLesson"
+            style="@style/button"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:src="@drawable/button_system_lesson_selector" />
+
+        <ImageView
+            android:id="@+id/ivCreateLesson"
+            style="@style/button"
+            android:layout_marginRight="15dp"
+            android:layout_weight="1"
+            android:src="@drawable/button_create_lesson_selector" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/lvContent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="25dp"
+        android:divider="@null" />
 </LinearLayout>

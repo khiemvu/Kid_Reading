@@ -58,6 +58,7 @@ public class StoryService {
         story.setTitle(c.getString(c.getColumnIndex(Story.STORY_NAME)));
         story.setContent(c.getString(c.getColumnIndex(Story.STORY_CONTENT)));
         story.setThumb_image(c.getString(c.getColumnIndex(Story.IMAGE_URL)));
+        story.setNumberQuestionAnswered(c.getString(c.getColumnIndex(Story.NUMBER_QUESTION_ANSWERED)));
         return story;
     }
 }

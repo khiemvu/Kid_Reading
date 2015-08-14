@@ -41,7 +41,7 @@ public class UserGroup extends Group {
     }
 
     @Override
-    public void setDataToView(ViewHolder viewHolder, View view) {
+    public void setDataToView(ViewHolder viewHolder, View view, boolean isShowDeleteButton) {
         ImageView imageView = (ImageView) viewHolder.getView(R.id.user_grid_item_ivAvatar);
         TextView tvName = (TextView) viewHolder.getView(R.id.user_grid_item_tvName);
         tvName.setText(userName);

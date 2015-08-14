@@ -23,21 +23,33 @@
             style="@style/AppTheme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="This is a storyCreate" />
+            android:text="This is a storyCreate"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvDescription"
             style="@style/AppTheme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:text="this is a description.."
-            android:textColor="@color/gray_21" />
+            android:textColor="@color/gray_21"
+            android:textSize="13sp" />
+
+        <ImageView
+            android:id="@+id/ivReset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/btn_reset"
+            android:padding="5dp" />
     </LinearLayout>
+
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="5dp"
         android:layout_below="@+id/ivStory"
         android:layout_marginBottom="5dp"
         android:layout_marginTop="5dp"
