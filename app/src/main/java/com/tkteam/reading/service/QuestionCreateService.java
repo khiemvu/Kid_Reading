@@ -1,6 +1,7 @@
 package com.tkteam.reading.service;
 
 import android.content.Context;
+import android.database.Cursor;
 
 import com.tkteam.reading.dao.QuestionCreateDAO;
 import com.tkteam.reading.dao.entites.QuestionCreate;
@@ -52,5 +53,17 @@ public class QuestionCreateService {
 
     public void createOrUpdate(QuestionCreate questionCreate) throws SQLException {
         QuestionCreateDAO.getInstance(context).createOrUpdate(questionCreate);
+    }
+
+    public QuestionCreate convertDataToObject(Cursor c, QuestionCreate questionCreate) {
+        questionCreate.setStoryId(UUID.fromString(c.getString(c.getColumnIndex(QuestionCreate.STORY_ID))));
+        questionCreate.setQuestion(c.getString(c.getColumnIndex(QuestionCreate.QUESTION)));
+        questionCreate.setAnswerOne(c.getString(c.getColumnIndex(QuestionCreate.ANSWER_ONE)));
+        questionCreate.setAnswerTwo(c.getString(c.getColumnIndex(QuestionCreate.ANSWER_TWO)));
+        questionCreate.setAnswerThree(c.getString(c.getColumnIndex(QuestionCreate.ANSWER_THREE)));
+        questionCreate.setAnswerFour(c.getString(c.getColumnIndex(QuestionCreate.ANSWER_FOUR)));
+        questionCreate.setAnswerCorrect(c.getString(c.getColumnIndex(QuestionCreate.ANSWER_CORRECT)));
+        questionCreate.setAnswerHint(c.getString(c.getColumnIndex(QuestionCreate.ANSWER_HINT)));
+        return questionCreate;
     }
 }

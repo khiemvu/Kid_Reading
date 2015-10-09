@@ -3,28 +3,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/story_screen_back"
+    android:background="@drawable/icon_bg_detail"
     android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="23dp">
+        android:layout_marginTop="13dp">
 
         <ImageView
             android:id="@+id/ivBack"
             style="@style/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="80dp"
             android:layout_alignParentLeft="true"
             android:layout_centerInParent="true"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="35dp"
             android:src="@drawable/button_back" />
     </RelativeLayout>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="285dp"
+        android:layout_height="450dp"
         android:layout_margin="15dp"
         android:paddingBottom="10dp">
 
@@ -49,12 +49,13 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:text="All About Coyotes"
+                android:textSize="25sp"
                 android:textStyle="bold" />
 
             <ImageView
                 android:id="@+id/ivSpeak"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_alignParentRight="true"
                 android:src="@drawable/speaker_normal" />
 
@@ -64,6 +65,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ivStory"
+                android:textSize="20sp"
                 android:textStyle="normal" />
         </RelativeLayout>
     </ScrollView>
@@ -72,17 +74,17 @@
         android:id="@+id/rlIndicator"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp">
+        android:layout_marginTop="0dp">
 
         <ImageView
             android:id="@+id/btSubmit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="15dp"
+            android:layout_marginRight="35dp"
             android:background="@drawable/btn_submit0001"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
             android:text="Submit" />
 
         <com.viewpagerindicator.CirclePageIndicator
@@ -91,9 +93,10 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_centerVertical="true"
+            android:layout_marginLeft="3dp"
             app:fillColor="@color/gray"
             app:pageColor="@color/black"
-            app:radius="4dp"
+            app:radius="8dp"
             app:strokeColor="@color/black"
             app:strokeWidth="0.3dp" />
 

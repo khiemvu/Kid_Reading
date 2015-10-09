@@ -5,15 +5,44 @@
 
     <RelativeLayout
         android:id="@+id/user_grid_item_rlAvatar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true">
+        android:layout_width="80dp"
+        android:layout_height="80dp">
 
         <ImageView
             android:id="@+id/user_grid_item_ivAvatar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:src="@drawable/user_back" />
+
+        <ImageView
+            android:id="@+id/user_grid_item_ivDelete"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/delete_user_indicator"
+            android:scaleType="centerCrop"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/user_grid_item_ivEdit"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/current_user_indicator"
+            android:padding="10dp"
+            android:scaleType="fitXY"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/user_grid_item_ivUserActive"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/current_user_indicator"
+            android:padding="10dp"
+            android:scaleType="fitXY"
+            android:visibility="gone" />
     </RelativeLayout>
 
     <TextView
@@ -23,6 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/user_grid_item_rlAvatar"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/spacing_normal" />
+        android:layout_marginTop="10dp"
+        android:textSize="15sp" />
 
 </RelativeLayout>

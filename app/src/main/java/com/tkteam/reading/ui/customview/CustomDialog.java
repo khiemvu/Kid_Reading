@@ -1,13 +1,9 @@
 package com.tkteam.reading.ui.customview;
 
-import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 
 /**
  * Created by Trung on 5/26/2015.

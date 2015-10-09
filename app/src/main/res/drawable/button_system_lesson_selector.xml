@@ -3,5 +3,6 @@
 
     <item android:drawable="@drawable/bitmap_system_lesson" android:state_pressed="true"></item>
     <item android:drawable="@drawable/btn_system_lessions"></item>
+    <item android:drawable="@drawable/bitmap_system_lesson" android:state_checked="true" />
 
 </selector>

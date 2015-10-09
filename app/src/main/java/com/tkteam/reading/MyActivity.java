@@ -25,7 +25,8 @@ public class MyActivity extends BaseActivity {
             if (userList == null || userList.size() == 0) {
                 User user = new User();
                 user.setCurrentUser(true);
-                user.setName("Current User");
+                user.setName("User Default");
+                ApplicationStateHolder.getInstance().setUserActiveName(user.getName());
                 UserService.getInstance(this).createOrUpdate(user);
             }
         } catch (SQLException e) {

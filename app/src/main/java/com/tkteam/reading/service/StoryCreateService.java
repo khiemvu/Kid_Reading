@@ -1,6 +1,7 @@
 package com.tkteam.reading.service;
 
 import android.content.Context;
+import android.database.Cursor;
 
 import com.tkteam.reading.dao.StoryCreateDAO;
 import com.tkteam.reading.dao.entites.StoryCreate;
@@ -51,5 +52,15 @@ public class StoryCreateService {
 
     public void createOrUpdate(StoryCreate storyCreate) throws SQLException {
         StoryCreateDAO.getInstance(context).createOrUpdate(storyCreate);
+    }
+
+    public StoryCreate convertDataToObject(Cursor c, StoryCreate storyCreate) {
+        storyCreate.setId(UUID.fromString(c.getString(c.getColumnIndex(StoryCreate.ID))));
+        storyCreate.setTitle(c.getString(c.getColumnIndex(StoryCreate.STORY_NAME)));
+        storyCreate.setContent(c.getString(c.getColumnIndex(StoryCreate.STORY_CONTENT)));
+        storyCreate.setThumb_image(c.getString(c.getColumnIndex(StoryCreate.IMAGE_URL)));
+        storyCreate.setNumberQuestionAnswered(c.getString(c.getColumnIndex(StoryCreate.NUMBER_QUESTION_ANSWERED)));
+        storyCreate.setNumberAnsweredCorrect(c.getString(c.getColumnIndex(StoryCreate.NUMBER_ANSWER_CORRECT)));
+        return storyCreate;
     }
 }

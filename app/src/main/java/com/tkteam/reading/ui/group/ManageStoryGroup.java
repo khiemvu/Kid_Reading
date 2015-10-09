@@ -15,6 +15,7 @@ import com.tkteam.reading.ApplicationStateHolder;
 import com.tkteam.reading.R;
 import com.tkteam.reading.dao.entites.StoryCreate;
 import com.tkteam.reading.ui.event.DeleteStoryEvent;
+import com.tkteam.reading.utils.ProgressDialogHolder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -84,7 +85,7 @@ public class ManageStoryGroup extends Group {
     }
 
     @Override
-    public void setDataToView(ViewHolder viewHolder, View view, boolean isShowDeleteButton) {
+    public void setDataToView(ViewHolder viewHolder, View view, boolean isShowDeleteButton, boolean isShowEditButton) {
         ImageView ivStory = (ImageView) viewHolder.getView(R.id.ivStory);
         ImageView ivDelete = (ImageView) viewHolder.getView(R.id.ivDelete);
         TextView tvStoryName = (TextView) viewHolder.getView(R.id.tvStoryName);
@@ -98,6 +99,7 @@ public class ManageStoryGroup extends Group {
         ivDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ProgressDialogHolder.getInstance().showDialogWithoutMessage();
                 EventBus.getDefault().post(new DeleteStoryEvent(storyId));
             }
         });

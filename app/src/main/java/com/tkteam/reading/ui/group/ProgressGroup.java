@@ -13,21 +13,26 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.tkteam.reading.ApplicationStateHolder;
 import com.tkteam.reading.R;
 import com.tkteam.reading.dao.entites.Story;
+import com.tkteam.reading.dao.entites.StoryCreate;
+import com.tkteam.reading.ui.event.ResetOneStoryEvent;
+import com.tkteam.reading.utils.ProgressDialogHolder;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
+
+import de.greenrobot.event.EventBus;
 
 /**
  * Created by Khiemvx on 8/14/2015.
  */
 public class ProgressGroup extends Group {
+    static boolean isCreateStory = false;
     DisplayImageOptions options;
     ImageLoader imageLoader;
     private String storyName;
-    private String description;
+    private String numberAnswered;
     private String storyUrl;
-    private UUID storyId;
+    private String storyId;
 
     public ProgressGroup() {
         options = new DisplayImageOptions.Builder()
@@ -48,17 +53,32 @@ public class ProgressGroup extends Group {
         imageLoader.init(config);
     }
 
-    public static List<ProgressGroup> convertFromStory(List<Story> storySystem) {
-        List<ProgressGroup> storyGroups = new ArrayList<>();
+    public static List<ProgressGroup> convertFromStorySystem(List<Story> storySystem) {
+        List<ProgressGroup> progressGroups = new ArrayList<>();
         for (Story story : storySystem) {
-            ProgressGroup userGroup = new ProgressGroup();
-            userGroup.setStoryName(story.getTitle());
-            userGroup.setDescription(story.getContent());
-            userGroup.setStoryUrl("assets://images/" + story.getThumb_image());
-//            userGroup.setStoryId(UUID.fromString(story.getId()));
-            storyGroups.add(userGroup);
+            ProgressGroup progressGroup = new ProgressGroup();
+            progressGroup.setStoryName(story.getTitle());
+            progressGroup.setNumberAnswered(story.getNumberQuestionAnswered());
+            progressGroup.setStoryUrl("assets://images/" + story.getThumb_image());
+            progressGroup.setStoryId(story.getId());
+            progressGroups.add(progressGroup);
         }
-        return storyGroups;
+        isCreateStory = false;
+        return progressGroups;
+    }
+
+    public static List<ProgressGroup> convertFromStoryCreate(List<StoryCreate> storyCreates) {
+        List<ProgressGroup> progressGroups = new ArrayList<>();
+        for (StoryCreate storyCreate : storyCreates) {
+            ProgressGroup progressGroup = new ProgressGroup();
+            progressGroup.setStoryName(storyCreate.getTitle());
+            progressGroup.setNumberAnswered(storyCreate.getNumberQuestionAnswered());
+            progressGroup.setStoryUrl("file://" + storyCreate.getThumb_image());
+            progressGroup.setStoryId(storyCreate.getId().toString());
+            progressGroups.add(progressGroup);
+        }
+        isCreateStory = true;
+        return progressGroups;
     }
 
     @Override
@@ -79,19 +99,19 @@ public class ProgressGroup extends Group {
     }
 
     @Override
-    public void setDataToView(ViewHolder viewHolder, View view, boolean isShowDeleteButton) {
+    public void setDataToView(ViewHolder viewHolder, View view, boolean isShowDeleteButton, boolean isShowEditButton) {
         ImageView ivStory = (ImageView) viewHolder.getView(R.id.ivStory);
         ImageView ivReset = (ImageView) viewHolder.getView(R.id.ivReset);
         TextView tvStoryName = (TextView) viewHolder.getView(R.id.tvStoryName);
         TextView tvDescription = (TextView) viewHolder.getView(R.id.tvDescription);
-
         tvStoryName.setText(storyName);
-//        tvDescription.setText(description);
+        tvDescription.setText("Multiple Choice: " + numberAnswered + "/7");
         ImageLoader.getInstance().displayImage(storyUrl, ivStory, options);
         ivReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //todo reset and update database
+                ProgressDialogHolder.getInstance().showDialogWithoutMessage();
+                EventBus.getDefault().post(new ResetOneStoryEvent(storyId, isCreateStory));
             }
         });
     }
@@ -104,12 +124,12 @@ public class ProgressGroup extends Group {
         this.storyName = storyName;
     }
 
-    public String getDescription() {
-        return description;
+    public String getNumberAnswered() {
+        return numberAnswered;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setNumberAnswered(String numberAnswered) {
+        this.numberAnswered = numberAnswered;
     }
 
     public String getStoryUrl() {
@@ -120,11 +140,11 @@ public class ProgressGroup extends Group {
         this.storyUrl = storyUrl;
     }
 
-    public UUID getStoryId() {
+    public String getStoryId() {
         return storyId;
     }
 
-    public void setStoryId(UUID storyId) {
+    public void setStoryId(String storyId) {
         this.storyId = storyId;
     }
 }

@@ -51,4 +51,9 @@ public class StoryCreateDAO {
     public void delete(StoryCreate storyCreate) throws SQLException {
         storyDAO.delete(storyCreate);
     }
+
+    public void update(List<StoryCreate> storyCreates) throws SQLException {
+        for (StoryCreate storyCreate : storyCreates)
+            storyDAO.update(storyCreate);
+    }
 }

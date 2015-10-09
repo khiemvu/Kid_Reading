@@ -13,6 +13,7 @@ public class StoryCreate extends Base {
     public static final String STORY_CONTENT = "content";
     public static final String IMAGE_URL = "thumb_image";
     public static final String NUMBER_QUESTION_ANSWERED = "number_question_answered";
+    public static final String NUMBER_ANSWER_CORRECT = "number_answered_correct";
 
     @DatabaseField
     private String title;
@@ -21,7 +22,9 @@ public class StoryCreate extends Base {
     @DatabaseField
     private String thumb_image;
     @DatabaseField
-    private String numberQuestionAnswered;
+    private String number_question_answered;
+    @DatabaseField
+    private String number_answered_correct;
 
     public String getTitle() {
         return title;
@@ -48,10 +51,18 @@ public class StoryCreate extends Base {
     }
 
     public String getNumberQuestionAnswered() {
-        return numberQuestionAnswered;
+        return number_question_answered;
     }
 
-    public void setNumberQuestionAnswered(String numberQuestionAnswered) {
-        this.numberQuestionAnswered = numberQuestionAnswered;
+    public void setNumberQuestionAnswered(String number_question_answered) {
+        this.number_question_answered = number_question_answered;
+    }
+
+    public String getNumberAnsweredCorrect() {
+        return number_answered_correct;
+    }
+
+    public void setNumberAnsweredCorrect(String number_answered_correct) {
+        this.number_answered_correct = number_answered_correct;
     }
 }

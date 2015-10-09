@@ -6,8 +6,8 @@
 
     <ImageView
         android:id="@+id/ivStory"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_alignParentLeft="true"
         android:scaleType="centerCrop" />
 
@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="This is a storyCreate"
-            android:textSize="20sp"
+            android:textSize="25sp"
             android:textStyle="bold" />
 
         <TextView
@@ -35,18 +35,18 @@
             android:layout_marginTop="5dp"
             android:text="this is a description.."
             android:textColor="@color/gray_21"
-            android:textSize="15sp" />
+            android:textSize="18sp" />
     </LinearLayout>
 
     <ImageView
         android:id="@+id/ivDelete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="10dp"
         android:background="@drawable/delete_user_indicator"
-        android:padding="10dp"
+        android:padding="30dp"
         android:scaleType="centerCrop"
         android:visibility="gone" />
 

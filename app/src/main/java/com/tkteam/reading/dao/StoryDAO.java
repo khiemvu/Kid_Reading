@@ -50,4 +50,9 @@ public class StoryDAO {
     public void delete(Story story) throws SQLException {
         storyDAO.delete(story);
     }
+
+    public void update(List<Story> stories) throws SQLException {
+        for (Story story : stories)
+            storyDAO.update(story);
+    }
 }

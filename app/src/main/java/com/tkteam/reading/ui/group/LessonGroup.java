@@ -14,6 +14,7 @@ import com.tkteam.reading.ApplicationStateHolder;
 import com.tkteam.reading.R;
 import com.tkteam.reading.base.event.ChangedFragmentEvent;
 import com.tkteam.reading.dao.entites.Story;
+import com.tkteam.reading.dao.entites.StoryCreate;
 import com.tkteam.reading.ui.fragment.ReadStoryFragment;
 
 import java.util.ArrayList;
@@ -65,6 +66,19 @@ public class LessonGroup extends Group {
         return storyGroups;
     }
 
+    public static List<LessonGroup> convertFromStoryCreate(List<StoryCreate> storyCreateList) {
+        List<LessonGroup> storyGroups = new ArrayList<>();
+        for (StoryCreate story : storyCreateList) {
+            LessonGroup lessonGroup = new LessonGroup();
+            lessonGroup.setStoryName(story.getTitle());
+            lessonGroup.setStoryImage("file://" + story.getThumb_image());
+            lessonGroup.setStoryId(story.getId().toString());
+            lessonGroup.setStoryContent(story.getContent());
+            storyGroups.add(lessonGroup);
+        }
+        return storyGroups;
+    }
+
     @Override
     public int getLayout() {
         return R.layout.start_fragment_grid_veiw_item;
@@ -79,7 +93,7 @@ public class LessonGroup extends Group {
     }
 
     @Override
-    public void setDataToView(ViewHolder viewHolder, View view, boolean isShowDeleteButton) {
+    public void setDataToView(ViewHolder viewHolder, View view, boolean isShowDeleteButton, boolean isShowEditButton) {
         ImageView ivStory = (ImageView) viewHolder.getView(R.id.ivItem);
         TextView tvStoryName = (TextView) viewHolder.getView(R.id.tvItem);
         tvStoryName.setText(storyName);
@@ -87,7 +101,8 @@ public class LessonGroup extends Group {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EventBus.getDefault().post(new ChangedFragmentEvent(new ReadStoryFragment(storyId, storyName, storyContent, storyImage)));
+                boolean isStoryCreate = storyImage.contains("file");
+                EventBus.getDefault().post(new ChangedFragmentEvent(new ReadStoryFragment(storyId, storyName, storyContent, storyImage, isStoryCreate)));
             }
         });
     }

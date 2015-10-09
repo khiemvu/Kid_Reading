@@ -1,7 +1,6 @@
 package com.tkteam.reading.ui.fragment;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -12,16 +11,15 @@ import android.util.Log;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.tkteam.reading.ApplicationStateHolder;
 import com.tkteam.reading.R;
 import com.tkteam.reading.base.BaseFragment;
 import com.tkteam.reading.base.event.ChangedFragmentEvent;
 import com.tkteam.reading.dao.entites.StoryCreate;
 import com.tkteam.reading.service.StoryCreateService;
+import com.tkteam.reading.utils.FileUtils;
+import com.tkteam.reading.utils.StringUtils;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.UUID;
 
@@ -106,19 +104,35 @@ public class CreateStoryFragment extends BaseFragment {
 
     @OnClick(R.id.created_fragment_ivNext)
     public void clickStart() {
-        StoryCreate storyCreate = new StoryCreate();
-        UUID storyId = UUID.randomUUID();
-        storyCreate.setTitle(etTitle.getText().toString());
-        storyCreate.setContent(etContent.getText().toString());
-        storyCreate.setId(storyId);
-        storyCreate.setThumb_image(fileName);
-        Log.i("UUID", "UUID StoryCreate: " + storyId);
-        try {
-            StoryCreateService.getInstance(getActivity()).createOrUpdate(storyCreate);
-        } catch (SQLException e) {
-            e.printStackTrace();
+        if (StringUtils.isEmpty(etTitle.getText().toString()) || StringUtils.isEmpty(etContent.getText().toString())) {
+            final AlertDialog.Builder alertDialog = new AlertDialog.Builder(ApplicationStateHolder.getInstance().getMyActivity());
+            alertDialog.setTitle("Error");
+            alertDialog.setMessage("All fields is required");
+            alertDialog.setCancelable(false);
+            alertDialog.setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            AlertDialog alert = alertDialog.create();
+            alert.show();
+        } else {
+            StoryCreate storyCreate = new StoryCreate();
+            UUID storyId = UUID.randomUUID();
+            storyCreate.setTitle(etTitle.getText().toString());
+            storyCreate.setContent(etContent.getText().toString());
+            storyCreate.setId(storyId);
+            storyCreate.setThumb_image(fileName);
+            storyCreate.setNumberQuestionAnswered("0");
+            Log.i("UUID", "UUID StoryCreate: " + storyId);
+            try {
+                StoryCreateService.getInstance(getActivity()).createOrUpdate(storyCreate);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            EventBus.getDefault().post(new ChangedFragmentEvent(new CreateQuestionFragment(storyId)));
         }
-        EventBus.getDefault().post(new ChangedFragmentEvent(new CreateQuestionFragment(storyId)));
     }
 
     @OnClick(R.id.created_fragment_ivBack)
@@ -127,39 +141,15 @@ public class CreateStoryFragment extends BaseFragment {
     }
 
     @Override
-
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (data != null && (requestCode == REQUEST_CODE_TAKE_PICTURE || requestCode == REQUEST_CODE_LOAD_PICTURE)) {
+        if (data.getExtras().get("data") != null && (requestCode == REQUEST_CODE_TAKE_PICTURE || requestCode == REQUEST_CODE_LOAD_PICTURE)) {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
             ivStory.setImageBitmap(imageBitmap);
             long nameFile = System.currentTimeMillis();
-            fileName = bitmapToFile(getActivity().getApplicationContext(), imageBitmap);
+            fileName = FileUtils.bitmapToFile(getActivity().getApplicationContext(), imageBitmap);
         }
     }
 
-    public String bitmapToFile(Context context, Bitmap data) {
-        String imageFilePath = String.valueOf(context.getCacheDir());
-        String pathImage = "";
-        String imageName = String.valueOf(System.currentTimeMillis()) + ".png";
-        File file = new File(imageFilePath);
-        try {
-            if (!file.exists()) {
-                file.mkdir();
-            }
-            ByteArrayOutputStream bos = new ByteArrayOutputStream();
-            data.compress(Bitmap.CompressFormat.PNG, 0, bos);
-            byte[] bitmapdata = bos.toByteArray();
-            File outputFile = new File(file, imageName);
-            FileOutputStream outputStr = new FileOutputStream(outputFile);
-            outputStr.write(bitmapdata);
-            outputStr.flush();
-            outputStr.close();
-            pathImage = outputFile.getAbsolutePath();
-        } catch (IOException e) {
-
-        }
-        return pathImage;
-    }
 }

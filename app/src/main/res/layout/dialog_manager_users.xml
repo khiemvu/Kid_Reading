@@ -10,29 +10,46 @@
         android:background="@drawable/popup">
 
         <ImageView
+            android:id="@+id/btDone"
             style="@style/button"
+            android:layout_width="100dp"
+            android:layout_height="20dp"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/size_mini"
-            android:layout_marginTop="@dimen/size_mini"
+            android:layout_marginRight="10sp"
+            android:layout_marginTop="8dp"
             android:src="@drawable/button_done_selector" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="3dp"
+            android:text="Manager User"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <LinearLayout
             android:id="@+id/dialog_manager_users_llButtonContainer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/spacing_large"
+            android:layout_marginTop="30dp"
             android:orientation="horizontal">
 
-            <RelativeLayout
+            <LinearLayout
                 android:id="@+id/dialog_manager_users_rlAddUser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/spacing_normal">
+                android:layout_marginRight="20dp"
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <ImageView
                     android:id="@+id/dialog_manager_users_btAddUser"
                     style="@style/button"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:src="@drawable/button_add_user_selector" />
 
                 <TextView
@@ -42,19 +59,24 @@
                     android:layout_below="@+id/dialog_manager_users_btAddUser"
                     android:layout_centerHorizontal="true"
                     android:text="@string/string_text_add_new_user"
-                    android:textSize="@dimen/spacing_normal" />
-            </RelativeLayout>
+                    android:textSize="15sp" />
+            </LinearLayout>
 
-            <RelativeLayout
+            <LinearLayout
                 android:id="@+id/dialog_manager_users_rlEditUser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/spacing_normal">
+                android:layout_marginRight="20dp"
+                android:gravity="center"
+                android:orientation="vertical">
 
-                <ImageView
+                <CheckBox
                     android:id="@+id/dialog_manager_users_btEditUser"
                     style="@style/button"
-                    android:src="@drawable/button_edit_user_selector" />/>
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:background="@drawable/button_edit_user_selector"
+                    android:button="@null" />/>
 
                 <TextView
                     style="@style/TextBold"
@@ -63,18 +85,23 @@
                     android:layout_below="@+id/dialog_manager_users_btEditUser"
                     android:layout_centerHorizontal="true"
                     android:text="@string/string_text_edit_user"
-                    android:textSize="@dimen/spacing_normal" />
-            </RelativeLayout>
+                    android:textSize="15sp" />
+            </LinearLayout>
 
-            <RelativeLayout
+            <LinearLayout
                 android:id="@+id/dialog_manager_users_rlDeleteUser"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
 
-                <ImageView
+                <CheckBox
                     android:id="@+id/dialog_manager_users_btDeleteUser"
                     style="@style/button"
-                    android:src="@drawable/button_delete_user_selector" />
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:background="@drawable/button_delete_user_selector"
+                    android:button="@null" />
 
                 <TextView
                     style="@style/TextBold"
@@ -83,8 +110,8 @@
                     android:layout_below="@+id/dialog_manager_users_btDeleteUser"
                     android:layout_centerHorizontal="true"
                     android:text="@string/string_text_edit_user"
-                    android:textSize="@dimen/spacing_normal" />
-            </RelativeLayout>
+                    android:textSize="15sp" />
+            </LinearLayout>
         </LinearLayout>
 
         <GridView
@@ -92,6 +119,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/dialog_manager_users_llButtonContainer"
-            android:numColumns="auto_fit" />
+            android:gravity="center"
+            android:horizontalSpacing="10dp"
+            android:numColumns="4"
+            android:padding="5dp"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="10dp" />
     </RelativeLayout>
 </LinearLayout>

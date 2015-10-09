@@ -13,7 +13,7 @@ public abstract class Group {
 
     public abstract void findById(ViewHolder viewHolder, View view);
 
-    public abstract void setDataToView(ViewHolder viewHolder, View view, boolean isShowDeleteButton);
+    public abstract void setDataToView(ViewHolder viewHolder, View view, boolean isShowDeleteButton, boolean isShowEditButton);
 
     public Context getContext() {
         return context;

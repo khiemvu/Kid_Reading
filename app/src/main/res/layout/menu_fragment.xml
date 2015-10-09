@@ -2,8 +2,25 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/startscreenback"
+    android:background="@drawable/background_menu"
     android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/ivAnimal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/icon_animal" />
+
+    <ImageView
+        android:id="@+id/line1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ivAnimal"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"
+        android:src="@drawable/line" />
 
     <LinearLayout
         android:id="@+id/menu_fragment_llButtonContainer"
@@ -11,40 +28,67 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/size_mini"
         android:layout_marginRight="@dimen/size_mini"
-        android:layout_marginTop="203dp"
+        android:layout_marginTop="320dp"
         android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/menu_fragment_ivManagerUsers"
             style="@style/button"
+            android:layout_height="@dimen/height_icon_setting_on_menu_screen"
+            android:layout_marginLeft="65dp"
             android:layout_weight="1"
             android:src="@drawable/button_user_selector" />
 
         <ImageView
             android:id="@+id/menu_fragment_ivCreatedLesson"
             style="@style/button"
+            android:layout_height="@dimen/height_icon_setting_on_menu_screen"
             android:layout_weight="1"
             android:src="@drawable/button_create_selector" />
 
         <ImageView
             android:id="@+id/menu_fragment_ivSetting"
             style="@style/button"
+            android:layout_height="@dimen/height_icon_setting_on_menu_screen"
             android:layout_weight="1"
             android:src="@drawable/button_setting_selector" />
 
         <ImageView
             android:id="@+id/menu_fragment_ivProsgress"
             style="@style/button"
+            android:layout_height="@dimen/height_icon_setting_on_menu_screen"
+            android:layout_marginRight="65dp"
             android:layout_weight="1"
             android:src="@drawable/button_progress_selector" />
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/menu_fragment_ivStart"
-        style="@style/button"
+        android:id="@+id/line2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/menu_fragment_llButtonContainer"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/size_tiny"
+        android:layout_centerInParent="true"
+        android:src="@drawable/line" />
+
+
+    <ImageView
+        android:id="@+id/menu_fragment_ivStart"
+        style="@style/button"
+        android:layout_width="410dp"
+        android:layout_height="110dp"
+        android:layout_below="@+id/menu_fragment_llButtonContainer"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin_top_btStart"
         android:src="@drawable/button_start_selector" />
+
+    <ImageView
+        android:id="@+id/ivTicket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/menu_fragment_ivStart"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/icon_ticket" />
 
 </RelativeLayout>

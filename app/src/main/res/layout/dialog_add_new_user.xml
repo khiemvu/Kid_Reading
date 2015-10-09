@@ -6,28 +6,40 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="@drawable/popup">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/dialog_add_new_user_ivBack"
+            android:layout_width="100dp"
+            android:layout_height="20dp"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="@dimen/spacing_small"
             android:layout_marginTop="@dimen/spacing_normal"
             android:src="@drawable/btn_back" />
+
+        <TextView
+            android:id="@+id/tvAddOrEditUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="3dp"
+            android:text="Add User"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <RelativeLayout
             android:id="@+id/dialog_add_new_user_rlPickPhoto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/spacing_huge">
+            android:layout_marginTop="60dp">
 
             <ImageView
                 android:id="@+id/dialog_add_new_user_ivPickPhoto"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:layout_centerHorizontal="true"
                 android:src="@drawable/user_back" />
 
@@ -37,18 +49,33 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/dialog_add_new_user_ivPickPhoto"
                 android:layout_centerHorizontal="true"
-                android:text="@string/string_text_pick_your_photo" />
+                android:layout_marginTop="5dp"
+                android:text="@string/string_text_pick_your_photo"
+                android:textColor="@color/black" />
         </RelativeLayout>
 
         <EditText
+            android:id="@+id/dialog_add_new_user_etName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/dialog_add_new_user_rlPickPhoto"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
             android:background="@drawable/back_ground_layout_white"
             android:hint="Write your user name here"
             android:paddingLeft="@dimen/spacing_large"
             android:paddingRight="@dimen/spacing_large"
             android:textSize="@dimen/size_tiny" />
+
+        <ImageView
+            android:id="@+id/dialog_add_new_user_ivDone"
+            style="@style/button"
+            android:layout_width="100dp"
+            android:layout_height="20dp"
+            android:layout_below="@+id/dialog_add_new_user_etName"
+            android:layout_centerHorizontal="true"
+            android:layout_marginRight="10sp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/button_done_selector" />
     </RelativeLayout>
 </LinearLayout>

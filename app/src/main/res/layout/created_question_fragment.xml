@@ -10,16 +10,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="23dp">
+        android:layout_marginTop="30dp">
 
         <ImageView
             android:id="@+id/ivBack"
             style="@style/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
             android:layout_alignParentLeft="true"
             android:layout_centerInParent="true"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="30dp"
             android:src="@drawable/button_back" />
 
         <TextView
@@ -27,23 +27,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="@string/create_question" />
+            android:text="@string/create_question"
+            android:textSize="25sp" />
 
         <ImageView
             android:id="@+id/ivCancel"
             style="@style/button"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
             android:layout_alignParentRight="true"
             android:layout_centerInParent="true"
-            android:layout_marginRight="20dp"
+            android:layout_marginRight="30dp"
             android:src="@drawable/button_cancel" />
     </RelativeLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="400dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/rlTopbar"
         android:layout_centerInParent="true"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="180dp"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -52,6 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/create_multiple_choice_question"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <EditText
@@ -61,7 +65,8 @@
             android:layout_marginTop="@dimen/margin_top_question"
             android:background="@drawable/border_edittext"
             android:gravity="center"
-            android:hint="@string/type_your_question" />
+            android:hint="@string/type_your_question"
+            android:textSize="18sp" />
 
         <TextView
             style="@style/AppTheme"
@@ -69,7 +74,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:text="@string/note_put_the_correct_answer_first"
-            android:textColor="@color/gray_21" />
+            android:textColor="@color/gray_21"
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/etAnswer1"
@@ -77,7 +83,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_top_answer"
             android:background="@drawable/border_edittext"
-            android:hint="@string/correct_answer" />
+            android:hint="@string/correct_answer"
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/etAnswer2"
@@ -85,7 +92,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_top_answer"
             android:background="@drawable/border_edittext"
-            android:hint="@string/choice_2" />
+            android:hint="@string/choice_2"
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/etAnswer3"
@@ -93,7 +101,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_top_answer"
             android:background="@drawable/border_edittext"
-            android:hint="@string/choice_3" />
+            android:hint="@string/choice_3"
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/etAnswer4"
@@ -101,7 +110,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_top_answer"
             android:background="@drawable/border_edittext"
-            android:hint="@string/choice_4" />
+            android:hint="@string/choice_4"
+            android:textSize="18sp" />
 
     </LinearLayout>
 
@@ -109,24 +119,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/margin_top_question">
+        android:layout_marginBottom="100dp">
 
         <ImageView
             android:id="@+id/ivAdd"
             style="@style/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
             android:layout_alignParentLeft="true"
             android:layout_centerInParent="true"
-            android:layout_marginLeft="80dp"
+            android:layout_marginLeft="180dp"
             android:src="@drawable/btn_add_question" />
 
         <ImageView
             android:id="@+id/ivCancelCreateQuestion"
             style="@style/button"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
             android:layout_alignParentRight="true"
             android:layout_centerInParent="true"
-            android:layout_marginRight="80dp"
+            android:layout_marginRight="180dp"
             android:src="@drawable/btn_cancel_questions" />
     </RelativeLayout>
 
