@@ -2,18 +2,30 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/main_screen_back"
+    android:background="@drawable/background_menu"
     android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/menu_fragment_llButtonContainer"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="110dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="45dp"
+        android:background="@drawable/icon_grade_second"
+        android:orientation="horizontal"></LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/menu_fragment_llButtonContainer"
+        android:layout_width="350dp"
+        android:layout_height="90dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="@dimen/size_mini"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/background_setting_button"
         android:orientation="horizontal">
 
         <ImageView
@@ -21,7 +33,9 @@
             style="@style/button"
             android:layout_width="@dimen/width_height_item_image"
             android:layout_height="@dimen/width_height_item_image"
+            android:layout_marginLeft="15dp"
             android:layout_marginRight="5dp"
+            android:layout_marginTop="@dimen/margin_top_btSetting"
             android:layout_weight="1"
             android:src="@drawable/button_user_selector" />
 
@@ -31,6 +45,7 @@
             android:layout_width="@dimen/width_height_item_image"
             android:layout_height="@dimen/width_height_item_image"
             android:layout_marginRight="5dp"
+            android:layout_marginTop="@dimen/margin_top_btSetting"
             android:layout_weight="1"
             android:src="@drawable/button_create_selector" />
 
@@ -40,6 +55,7 @@
             android:layout_width="@dimen/width_height_item_image"
             android:layout_height="@dimen/width_height_item_image"
             android:layout_marginRight="5dp"
+            android:layout_marginTop="@dimen/margin_top_btSetting"
             android:layout_weight="1"
             android:src="@drawable/button_setting_selector" />
 
@@ -49,6 +65,7 @@
             android:layout_width="@dimen/width_height_item_image"
             android:layout_height="@dimen/width_height_item_image"
             android:layout_marginRight="5dp"
+            android:layout_marginTop="@dimen/margin_top_btSetting"
             android:layout_weight="1"
             android:src="@drawable/button_progress_selector" />
 
@@ -57,20 +74,21 @@
             style="@style/button"
             android:layout_width="@dimen/width_height_item_image"
             android:layout_height="@dimen/width_height_item_image"
-            android:layout_marginRight="15dp"
+            android:layout_marginTop="@dimen/margin_top_btSetting"
             android:layout_weight="1"
             android:src="@drawable/button_graph_selector" />
     </LinearLayout>
 
     <TextView
         android:id="@+id/tvUserActive"
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
+        android:layout_width="220dp"
+        android:layout_height="70dp"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/menu_fragment_llButtonContainer"
         android:layout_marginRight="80dp"
-        android:layout_marginTop="15dp"
-        android:gravity="center"
+        android:background="@drawable/bg_name_user"
+        android:gravity="top|center_horizontal"
+        android:paddingTop="10dp"
         android:text="tssaa sdf"
         android:textColor="@color/black"
         android:textSize="20sp" />
@@ -81,7 +99,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="80dp"
         android:layout_marginRight="80dp"
-        android:layout_marginTop="155dp"
+        android:layout_marginTop="185dp"
         android:orientation="horizontal">
 
         <RadioButton
@@ -102,15 +120,23 @@
             android:button="@null" />
     </RadioGroup>
 
+    <ImageView
+        android:id="@+id/line1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/radioGroup"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/line" />
+
     <GridView
         android:id="@+id/grid_view"
         android:layout_width="wrap_content"
-        android:layout_height="460dp"
-        android:layout_below="@+id/radioGroup"
+        android:layout_height="440dp"
+        android:layout_below="@+id/line1"
         android:layout_gravity="left|center_vertical"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="5dp"
         android:columnWidth="90dp"
         android:gravity="center"
         android:horizontalSpacing="10dp"
@@ -118,4 +144,30 @@
         android:padding="5dp"
         android:stretchMode="columnWidth"
         android:verticalSpacing="10dp" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/grid_view"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/line" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/grid_view"
+        android:layout_marginBottom="40dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/icon_ticket_in_list_story" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/grid_view"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/icon_animal_story" />
 </RelativeLayout>

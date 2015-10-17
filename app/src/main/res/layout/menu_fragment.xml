@@ -12,15 +12,16 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:src="@drawable/icon_animal" />
-
     <ImageView
         android:id="@+id/line1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/ivAnimal"
         android:layout_centerHorizontal="true"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
         android:layout_marginTop="70dp"
-        android:src="@drawable/line" />
+        android:background="@drawable/line" />
 
     <LinearLayout
         android:id="@+id/menu_fragment_llButtonContainer"
@@ -69,7 +70,9 @@
         android:layout_below="@+id/menu_fragment_llButtonContainer"
         android:layout_centerHorizontal="true"
         android:layout_centerInParent="true"
-        android:src="@drawable/line" />
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:background="@drawable/line" />
 
 
     <ImageView

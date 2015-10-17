@@ -28,6 +28,11 @@ public class MyActivity extends BaseActivity {
                 user.setName("User Default");
                 ApplicationStateHolder.getInstance().setUserActiveName(user.getName());
                 UserService.getInstance(this).createOrUpdate(user);
+                ApplicationStateHolder.getInstance().setPracticeMode(true);
+                ApplicationStateHolder.getInstance().setAward(true);
+                ApplicationStateHolder.getInstance().setVoiceOfWord(true);
+                ApplicationStateHolder.getInstance().setReadStory(true);
+                ApplicationStateHolder.getInstance().setVoiceOfQuestion(true);
             }
         } catch (SQLException e) {
             Log.e(this.getClass().toString(), "Error when create database");

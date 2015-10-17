@@ -19,7 +19,8 @@
     <dimen name="width_for_form_create_question">300dp</dimen>
     <dimen name="margin_top_question">50dp</dimen>
     <dimen name="margin_top_answer">30dp</dimen>
-    <dimen name="width_height_item_image">55dp</dimen>
+    <dimen name="width_height_item_image">65dp</dimen>
     <dimen name="margin_top_btStart">80dp</dimen>
     <dimen name="height_icon_setting_on_menu_screen">100dp</dimen>
+    <dimen name="margin_top_btSetting">10dp</dimen>
 </resources>

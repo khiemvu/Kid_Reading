@@ -20,11 +20,40 @@
             android:layout_centerInParent="true"
             android:layout_marginLeft="35dp"
             android:src="@drawable/button_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="34dp"
+            android:layout_toLeftOf="@+id/seekBar"
+            android:text="size"
+            android:textSize="20sp" />
+
+        <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+            android:id="@+id/seekBar"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="80dp"
+            android:layout_marginTop="36dp"
+            app:dsb_allowTrackClickToDrag="false"
+            app:dsb_indicatorFormatter="%d"
+            app:dsb_max="30"
+            app:dsb_min="15" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="25dp"
+            android:text="size"
+            android:textSize="30sp" />
     </RelativeLayout>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="450dp"
+        android:layout_height="430dp"
         android:layout_margin="15dp"
         android:paddingBottom="10dp">
 
@@ -65,6 +94,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ivStory"
+                android:layout_margin="7dp"
                 android:textSize="20sp"
                 android:textStyle="normal" />
         </RelativeLayout>
@@ -74,7 +104,7 @@
         android:id="@+id/rlIndicator"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="0dp">
+        android:layout_marginTop="20dp">
 
         <ImageView
             android:id="@+id/btSubmit"
@@ -94,10 +124,10 @@
             android:layout_centerInParent="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="3dp"
-            app:fillColor="@color/gray"
-            app:pageColor="@color/black"
+            app:fillColor="@color/yellow"
+            app:pageColor="@color/gray"
             app:radius="8dp"
-            app:strokeColor="@color/black"
+            app:strokeColor="@color/gray"
             app:strokeWidth="0.3dp" />
 
     </RelativeLayout>
@@ -110,7 +140,8 @@
         <android.support.v4.view.ViewPager
             android:id="@+id/viewPager"
             android:layout_width="fill_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_margin="15dp" />
 
     </RelativeLayout>
 

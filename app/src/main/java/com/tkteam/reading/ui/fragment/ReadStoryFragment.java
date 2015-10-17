@@ -29,6 +29,8 @@ import com.tkteam.reading.ui.adapter.ReadStoryCreateAdapter;
 import com.tkteam.reading.ui.adapter.ReadStorySystemAdapter;
 import com.viewpagerindicator.CirclePageIndicator;
 
+import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +48,8 @@ public class ReadStoryFragment extends BaseFragment {
     TextToSpeech textToSpeech;
     @InjectView(R.id.ivBack)
     ImageView ivBack;
+    @InjectView(R.id.seekBar)
+    DiscreteSeekBar seekBar;
     @InjectView(R.id.tvTitleStory)
     TextView tvTitleStory;
     @InjectView(R.id.ivStory)
@@ -106,6 +110,22 @@ public class ReadStoryFragment extends BaseFragment {
         });
         textToSpeech.speak(storyName, TextToSpeech.QUEUE_FLUSH, null);
         ivSpeak.setVisibility(ApplicationStateHolder.getInstance().isReadStory() ? View.VISIBLE : View.GONE);
+        seekBar.setOnProgressChangeListener(new DiscreteSeekBar.OnProgressChangeListener() {
+            @Override
+            public void onProgressChanged(DiscreteSeekBar discreteSeekBar, int i, boolean b) {
+                tvStoryContent.setTextSize(i);
+            }
+
+            @Override
+            public void onStartTrackingTouch(DiscreteSeekBar discreteSeekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(DiscreteSeekBar discreteSeekBar) {
+
+            }
+        });
     }
 
     private void prepareDataSystemForBindOnView() {
